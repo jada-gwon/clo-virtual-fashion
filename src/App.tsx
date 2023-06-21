@@ -4,12 +4,12 @@ import reactLogo from './assets/react.svg';
 
 import './App.css';
 
-function App() {
+const App: React.FC = () => {
   const [count, setCount] = useState(0);
 
   return (
     <>
-      <div>
+      <div className="test">
         <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
           <img src="/vite.svg" className="logo" alt="Vite logo" />
         </a>
@@ -18,7 +18,7 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
-      <div className="card">
+      <div className="container flex text-slate-50">
         <button type="button" onClick={() => setCount((c) => c + 1)}>
           count is {count}
         </button>
@@ -31,6 +31,6 @@ function App() {
       </p>
     </>
   );
-}
+};
 
 export default App;

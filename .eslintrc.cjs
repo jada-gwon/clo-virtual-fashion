@@ -10,6 +10,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:import/typescript',
     'plugin:import/recommended',
+    'plugin:tailwindcss/recommended',
   ],
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh'],

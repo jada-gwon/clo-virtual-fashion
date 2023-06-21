@@ -1,6 +1,12 @@
 // eslint-disable-next-line no-undef
 module.exports = {
   env: { browser: true, es2020: true },
+  settings: {
+    'import/resolver': {
+      typescript: {},
+      // vite: {},
+    },
+  },
   extends: [
     'airbnb',
     'airbnb-typescript',
@@ -11,9 +17,10 @@ module.exports = {
     'plugin:import/typescript',
     'plugin:import/recommended',
     'plugin:tailwindcss/recommended',
+    'plugin:css-import-order/recommended',
   ],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh'],
+  plugins: ['react-refresh', 'css-import-order'],
   parserOptions: {
     project: './tsconfig.json',
     tsconfigRootDir: __dirname,
@@ -36,6 +43,11 @@ module.exports = {
             pattern: 'react',
             group: 'external',
             position: 'before',
+          },
+          {
+            pattern: '"**/*.svg',
+            group: 'index',
+            position: 'after',
           },
         ],
         pathGroupsExcludedImportTypes: ['react'],

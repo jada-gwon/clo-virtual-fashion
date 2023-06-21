@@ -1,8 +1,9 @@
 import React from 'react';
 
+import { PricingOptionsFilter } from '@/features/pricingOptions/components';
+
 import ContentList from '../ContentList';
 import KeywordSearch from '../KeywordSearch';
-import PricingOptionsFilter from '../PricingOptionsFilter';
 
 import './App.css';
 

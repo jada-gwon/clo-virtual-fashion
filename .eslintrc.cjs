@@ -38,11 +38,23 @@ module.exports = {
           caseInsensitive: true,
         },
         distinctGroup: false,
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          ['parent', 'sibling'],
+          'index',
+          'unknown',
+        ],
         pathGroups: [
           {
             pattern: 'react',
             group: 'external',
             position: 'before',
+          },
+          {
+            pattern: '@/**',
+            group: 'internal',
           },
           {
             pattern: '"**/*.svg',

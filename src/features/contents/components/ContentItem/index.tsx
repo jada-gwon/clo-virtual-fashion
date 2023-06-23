@@ -11,13 +11,15 @@ const ContentItem: React.FC<ContentItemProps> = ({ content }) => {
       <div>
         <img
           src={content.imagePath}
-          alt={`${content.imagePath} - by ${content.creator}`}
+          alt={`${content.title} - by ${content.creator}`}
         />
       </div>
-      <div>
-        <div>{content.title}</div>
-        <div>{content.creator}</div>
+      <div className="mt-2 flex justify-between">
         <div>
+          <div>{content.title}</div>
+          <div>{content.creator}</div>
+        </div>
+        <div className="text-right text-base font-bold">
           <ContentPrice
             pricingOption={content.pricingOption}
             price={content.price}

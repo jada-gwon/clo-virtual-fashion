@@ -5,18 +5,19 @@ import { ContentFilter } from '@/features/contentsFilter/types';
 import { Content } from '../types';
 
 import contentKeys from './contentsKeys';
-import useAllContents from './useAllContents';
+import useContentsList from './useContentsList';
 
 const LOAD = 12;
 
 function useInfiniteContentsList(filter: ContentFilter) {
-  const { data } = useAllContents(filter);
+  const { data } = useContentsList(filter);
   return useInfiniteQuery<Content[]>({
     queryKey: contentKeys.infiniteList(filter),
     queryFn: ({ pageParam = 0 }) =>
       data?.slice(pageParam * LOAD, (pageParam + 1) * LOAD) ?? [],
     getNextPageParam: (lastPage) =>
       lastPage.length === LOAD ? lastPage.length : false,
+    enabled: !!data,
   });
 }
 

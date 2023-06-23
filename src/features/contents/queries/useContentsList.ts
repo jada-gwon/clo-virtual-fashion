@@ -7,7 +7,7 @@ import { fetchContentsList } from '../utils';
 
 import contentKeys from './contentsKeys';
 
-function useAllContents(filter: ContentFilter) {
+function useContentsList(filter: ContentFilter) {
   return useQuery<Content[]>({
     queryKey: contentKeys.list(filter),
     queryFn: () => fetchContentsList(),
@@ -16,8 +16,12 @@ function useAllContents(filter: ContentFilter) {
       if (filter.keyword) {
         result = result.filter(
           (content) =>
-            content.title.includes(filter.keyword) ||
-            content.creator.includes(filter.keyword)
+            content.title
+              .toLocaleLowerCase()
+              .includes(filter.keyword.toLocaleLowerCase()) ||
+            content.creator
+              .toLocaleLowerCase()
+              .includes(filter.keyword.toLocaleLowerCase())
         );
       }
       if (filter.pricingOptions.length) {
@@ -29,7 +33,8 @@ function useAllContents(filter: ContentFilter) {
     },
     cacheTime: Infinity,
     staleTime: 1000 * 60 * 5,
+    keepPreviousData: true,
   });
 }
 
-export default useAllContents;
+export default useContentsList;

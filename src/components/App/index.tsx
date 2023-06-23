@@ -18,7 +18,7 @@ const App: React.FC = () => {
       <header>
         <div className="flex h-12 items-center bg-black pl-4 text-2xl">👗</div>
       </header>
-      <div className="container mx-auto">
+      <div className="container">
         <aside>
           <div className="my-6">
             <KeywordSearch />

@@ -5,7 +5,7 @@ import {
   KeywordSearch,
 } from '@/features/contentsFilter/components';
 
-import ContentList from '../ContentList';
+import { ContentList } from '../../features/contents/components';
 
 import './App.css';
 

@@ -1,24 +1,21 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import pricingOptionsSlice from '@/features/pricingOptions/slice/pricingOptionsSlice';
-
-function getInitialState() {
-  const { pricingOptions = [] } = window.history.state;
-  return { pricingOptions };
-}
+import contentsFilterSlice from '@/features/contentsFilter/slice';
+import { getInitialContentsFilterState } from '@/features/contentsFilter/utils';
 
 const store = configureStore({
   reducer: {
-    pricingOptions: pricingOptionsSlice,
+    contentsFilter: contentsFilterSlice,
+    test: contentsFilterSlice,
   },
-  preloadedState: getInitialState(),
+  preloadedState: { contentsFilter: getInitialContentsFilterState() },
 });
 
 function mutateHistoryState() {
-  const { pricingOptions: pricingOptionsState } = store.getState();
+  const { contentsFilter = {} } = store.getState();
   window.history.replaceState(
     {
-      pricingOptions: pricingOptionsState,
+      contentsFilter,
     },
     ''
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { PricingOptionsFilter } from '@/features/pricingOptions/components';
+import { PricingOptionsFilter } from '@/features/contentsFilter/components';
 
 import ContentList from '../ContentList';
 import KeywordSearch from '../KeywordSearch';

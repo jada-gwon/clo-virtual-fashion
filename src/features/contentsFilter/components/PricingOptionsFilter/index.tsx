@@ -1,13 +1,13 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { clearFilter } from '../../slice/pricingOptionsSlice';
+import { clearPricingOptions } from '../../slice';
 import { PricingOptions } from '../../types';
 import PricingOption from '../PricingOption';
 
 const PricingOptionsFilter: React.FC = () => {
   const dispatch = useDispatch();
-  const onClickClear = () => dispatch(clearFilter());
+  const onClickClear = () => dispatch(clearPricingOptions());
 
   return (
     <div className="flex gap-4 bg-zinc-900 p-6">

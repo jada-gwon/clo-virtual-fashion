@@ -1,3 +1,4 @@
+import KeywordSearch from './KeywordSearch';
 import PricingOptionsFilter from './PricingOptionsFilter';
 
-export { PricingOptionsFilter };
+export { KeywordSearch, PricingOptionsFilter };

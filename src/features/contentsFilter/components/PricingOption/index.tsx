@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { selectIsChecked } from '../../hooks';
+import { selectIsChecked } from '../../selector';
 import { updatePricingOptions } from '../../slice';
 import { PricingOptions } from '../../types';
 

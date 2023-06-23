@@ -7,4 +7,5 @@ const selectIsChecked: (
 ) => (state: RootState) => boolean =
   (option: PricingOptions) => (state: RootState) =>
     state.contentsFilter.pricingOptions.includes(option);
+
 export default selectIsChecked;

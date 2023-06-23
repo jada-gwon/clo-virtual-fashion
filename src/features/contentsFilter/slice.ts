@@ -36,9 +36,13 @@ const contentsFilterSlice = createSlice({
       ...rest,
       pricingOptions: [],
     }),
+    updateKeyword: ({ keyword, ...rest }, action: PayloadAction<string>) => ({
+      ...rest,
+      keyword: action.payload,
+    }),
   },
 });
 
 export default contentsFilterSlice.reducer;
-export const { updatePricingOptions, clearPricingOptions } =
+export const { updatePricingOptions, clearPricingOptions, updateKeyword } =
   contentsFilterSlice.actions;

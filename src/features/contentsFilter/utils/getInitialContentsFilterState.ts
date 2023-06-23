@@ -1,5 +1,5 @@
 function getInitialContentsFilterState() {
-  const { contentsFilter } = window.history.state;
+  const { contentsFilter } = window.history.state || {};
   return (
     contentsFilter ?? {
       pricingOptions: [],

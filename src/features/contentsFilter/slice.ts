@@ -1,13 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { PricingOptions } from './types';
+import { PricingOptions, ContentFilter } from './types';
 import { updatePricingOptions as getNextPricingOptions } from './utils';
 
-type ContentsFilterSLice = {
-  pricingOptions: PricingOptions[];
-  keyword: string;
-};
-const initialState: ContentsFilterSLice = {
+const initialState: ContentFilter = {
   pricingOptions: [],
   keyword: '',
 };

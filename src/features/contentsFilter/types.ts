@@ -3,3 +3,8 @@ export enum PricingOptions {
   FREE = 1,
   VIEW_ONLY = 2,
 }
+
+export type ContentFilter = {
+  pricingOptions: PricingOptions[];
+  keyword: string;
+};

@@ -1,3 +1,4 @@
 import fetchContentsList from './fetchContentsList';
+import filterContentsList from './filterContentsList';
 
-export { fetchContentsList };
+export { fetchContentsList, filterContentsList };

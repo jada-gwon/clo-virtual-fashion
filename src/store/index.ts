@@ -6,13 +6,12 @@ import { getInitialContentsFilterState } from '@/features/contentsFilter/utils';
 const store = configureStore({
   reducer: {
     contentsFilter: contentsFilterSlice,
-    test: contentsFilterSlice,
   },
   preloadedState: { contentsFilter: getInitialContentsFilterState() },
 });
 
 function mutateHistoryState() {
-  const { contentsFilter = {} } = store.getState();
+  const { contentsFilter } = store.getState();
   window.history.replaceState(
     {
       contentsFilter,

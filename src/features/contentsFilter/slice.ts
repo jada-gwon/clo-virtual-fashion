@@ -1,7 +1,7 @@
+/* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { PricingOptions, ContentFilter } from './types';
-import { updatePricingOptions as getNextPricingOptions } from './utils';
 
 const initialState: ContentFilter = {
   pricingOptions: [],
@@ -18,24 +18,25 @@ const contentsFilterSlice = createSlice({
   initialState,
   reducers: {
     updatePricingOptions: (
-      { pricingOptions, ...rest },
+      state,
       action: PayloadAction<UpdateFilterPayload>
-    ) => ({
-      ...rest,
-      pricingOptions: getNextPricingOptions(
-        pricingOptions,
-        action.payload.option,
-        action.payload.checked
-      ),
-    }),
-    clearPricingOptions: ({ pricingOptions, ...rest }) => ({
-      ...rest,
-      pricingOptions: [],
-    }),
-    updateKeyword: ({ keyword, ...rest }, action: PayloadAction<string>) => ({
-      ...rest,
-      keyword: action.payload,
-    }),
+    ) => {
+      const { option, checked } = action.payload;
+      const optionSet = new Set(state.pricingOptions);
+      if (checked) {
+        optionSet.add(option);
+      } else {
+        optionSet.delete(option);
+      }
+      state.pricingOptions = Array.from(optionSet);
+      state.pricingOptions.sort();
+    },
+    clearPricingOptions: (state) => {
+      state.pricingOptions = [];
+    },
+    updateKeyword: (state, action: PayloadAction<string>) => {
+      state.keyword = action.payload;
+    },
   },
 });
 

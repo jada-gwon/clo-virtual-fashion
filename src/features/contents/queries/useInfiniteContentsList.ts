@@ -9,10 +9,10 @@ import useAllContents from './useAllContents';
 
 const LOAD = 12;
 
-function useContentsList(filter: ContentFilter) {
-  const { data } = useAllContents();
+function useInfiniteContentsList(filter: ContentFilter) {
+  const { data } = useAllContents(filter);
   return useInfiniteQuery<Content[]>({
-    queryKey: contentKeys.filteredList(filter),
+    queryKey: contentKeys.infiniteList(filter),
     queryFn: ({ pageParam = 0 }) =>
       data?.slice(pageParam * LOAD, (pageParam + 1) * LOAD) ?? [],
     getNextPageParam: (lastPage) =>
@@ -20,4 +20,4 @@ function useContentsList(filter: ContentFilter) {
   });
 }
 
-export default useContentsList;
+export default useInfiniteContentsList;

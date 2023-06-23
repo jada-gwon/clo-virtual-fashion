@@ -2,9 +2,7 @@ import { ContentFilter } from '@/features/contentsFilter/types';
 
 import { Content } from '../types';
 
-const filterContentsList: (
-  filter: ContentFilter
-) => (list: Content[]) => Content[] = (filter) => (list) => {
+function filterContentsList(list: Content[], filter: ContentFilter): Content[] {
   let result = list;
   if (filter.keyword) {
     result = result.filter(
@@ -23,5 +21,5 @@ const filterContentsList: (
     );
   }
   return result;
-};
+}
 export default filterContentsList;

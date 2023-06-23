@@ -8,3 +8,11 @@ export type Content = {
   imagePath: string;
   price: number;
 };
+
+export type ContentsListPage = {
+  data: Content[];
+  pageInfo: {
+    currentPage: number;
+    hasNextPage: boolean;
+  };
+};

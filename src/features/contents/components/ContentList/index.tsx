@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { selectFilterState } from '@/features/contentsFilter/selector';
 
-import useInfiniteContentsList from '../../queries/useInfiniteContentsList';
+import useContentsList from '../../queries/useContentsList';
 import ContentItem from '../ContentItem';
 
 const ContentList: React.FC = () => {
@@ -13,7 +13,7 @@ const ContentList: React.FC = () => {
     isFetchingNextPage,
     hasNextPage,
     fetchNextPage,
-  } = useInfiniteContentsList(filterState);
+  } = useContentsList(filterState);
   const [target, setTarget] = useState<HTMLElement | null>(null);
 
   useEffect(() => {

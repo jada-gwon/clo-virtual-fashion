@@ -3,4 +3,7 @@
 ## 실행 방법
 
 ## 사용 라이브러리
-1. tailwindcss
+
+1. Tailwind CSS
+
+2. TanStack Query (React Query)

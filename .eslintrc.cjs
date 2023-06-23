@@ -18,6 +18,7 @@ module.exports = {
     'plugin:import/recommended',
     'plugin:tailwindcss/recommended',
     'plugin:css-import-order/recommended',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
   ],
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh', 'css-import-order'],

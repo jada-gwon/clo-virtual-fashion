@@ -8,10 +8,14 @@ type ContentItemProps = { content: Content };
 const ContentItem: React.FC<ContentItemProps> = ({ content }) => {
   return (
     <div>
-      <div>
-        <img
-          src={content.imagePath}
-          alt={`${content.title} - by ${content.creator}`}
+      <div className="relative">
+        <div
+          style={{
+            paddingTop: '120%',
+            backgroundImage: `url(${content.imagePath})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
         />
       </div>
       <div className="mt-2 flex justify-between">

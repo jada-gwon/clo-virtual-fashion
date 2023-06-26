@@ -6,4 +6,4 @@
 
 1. Tailwind CSS
 
-2. TanStack Query (React Query)
+2. TanStack Query(React Query)

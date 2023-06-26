@@ -18,7 +18,7 @@ const KeywordSearch: React.FC = () => {
   };
   return (
     <label htmlFor="input-keyword">
-      <div className="flex h-16 items-center rounded-xl bg-zinc-700 pr-4 text-white outline-cyan-300 focus-within:outline">
+      <div className="flex h-16 items-center rounded-xl bg-zinc-700 pr-4 text-white outline-teal-300 focus-within:outline">
         <div className="p-5">
           <IconSearch />
         </div>

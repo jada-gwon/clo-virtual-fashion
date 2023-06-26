@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { clearPricingOptions } from '../../slice';
 import { PricingOptions } from '../../types';
+import PriceRangeSlider from '../PriceRangeSlider';
 import PricingOption from '../PricingOption';
 
 const PricingOptionsFilter: React.FC = () => {
@@ -16,6 +17,9 @@ const PricingOptionsFilter: React.FC = () => {
         <PricingOption label="Paid" value={PricingOptions.PAID} />
         <PricingOption label="Free" value={PricingOptions.FREE} />
         <PricingOption label="View Only" value={PricingOptions.VIEW_ONLY} />
+      </div>
+      <div>
+        <PriceRangeSlider />
       </div>
       <div className="ml-auto">
         <button type="button" onClick={onClickClear}>

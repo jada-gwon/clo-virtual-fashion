@@ -10,8 +10,6 @@ const ContentItem: React.FC<ContentItemProps> = ({ content }) => {
     <div>
       <div>
         <img
-          // TODO: 이미지가 안떠서 임시로 추가
-          className="h-80"
           src={content.imagePath}
           alt={`${content.title} - by ${content.creator}`}
         />

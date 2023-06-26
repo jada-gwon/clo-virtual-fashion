@@ -1,4 +1,4 @@
-import { ContentFilter } from '@/features/contentsFilter/types';
+import { ContentFilter, PricingOptions } from '@/features/contentsFilter/types';
 
 import { Content } from '../types';
 
@@ -20,6 +20,21 @@ function filterContentsList(list: Content[], filter: ContentFilter): Content[] {
       filter.pricingOptions.includes(content.pricingOption)
     );
   }
+
+  if (filter.pricingOptions.includes(PricingOptions.PAID)) {
+    const [minPrice, maxPrice] = filter.priceRange;
+
+    result = result.filter(
+      (content) =>
+        content.price >= minPrice ||
+        (minPrice === 0 && content.pricingOption === PricingOptions.FREE)
+    );
+
+    if (maxPrice !== 999) {
+      result = result.filter((content) => content.price <= maxPrice);
+    }
+  }
+
   return result;
 }
 export default filterContentsList;

@@ -1,41 +1,54 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-import React, { useState } from 'react';
+import React, { useEffect, useState, useDeferredValue } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { PRICE_RANGE_MAX, PRICE_RANGE_MIN } from '../../constants';
+import { selectFilterState } from '../../selector';
+import { updatePriceRange } from '../../slice';
+import { PricingOptions } from '../../types';
 
 import './PriceRangeSlider.css';
 
-const PRICE_MIN = 0;
-const PRICE_MAX = 1000;
-
 const PriceRangeSlider: React.FC = () => {
-  const [minPrice, setMinPrice] = useState<number>(PRICE_MIN);
-  const [maxPrice, setMaxPrice] = useState<number>(PRICE_MAX);
-  const [minPercent, setMinPercent] = useState<number>(0);
-  const [maxPercent, setMaxPercent] = useState<number>(100);
+  const dispatch = useDispatch();
+  const { priceRange, pricingOptions } = useSelector(selectFilterState);
+  const [minPrice, setMinPrice] = useState<number>(priceRange[0]);
+  const [maxPrice, setMaxPrice] = useState<number>(priceRange[1]);
+  const deferredMinValue = useDeferredValue(minPrice);
+  const deferredMaxValue = useDeferredValue(maxPrice);
+  const minPercent = (minPrice / PRICE_RANGE_MAX) * 100;
+  const maxPercent = (maxPrice / PRICE_RANGE_MAX) * 100;
+  const enabled = pricingOptions.includes(PricingOptions.PAID);
 
   const onChangeMinRange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);
-    if (value >= maxPrice) {
+    if (value > maxPrice) {
       return;
     }
     setMinPrice(value);
-    setMinPercent((value / PRICE_MAX) * 100);
+    // dispatch(updatePriceRange([value, maxPrice]);
   };
 
   const onChangeMaxRange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);
-    if (value <= minPrice) {
+    if (value < minPrice) {
       return;
     }
     setMaxPrice(value);
-    setMaxPercent((value / PRICE_MAX) * 100);
   };
 
+  useEffect(() => {
+    dispatch(updatePriceRange([deferredMinValue, deferredMaxValue]));
+  }, [deferredMinValue, deferredMaxValue]);
+
   return (
-    <div className="flex items-center gap-1.5">
+    <div className={`flex items-center gap-1.5${enabled ? '' : ' opacity-30'}`}>
       <input
-        type="number"
+        type="text"
         className="price-range-slider__input"
-        value={minPrice}
+        value={`$${minPrice}`}
+        maxLength={3}
+        disabled={!enabled}
       />
       <div className="price-range-slider__slider">
         <div className="relative">
@@ -51,26 +64,30 @@ const PriceRangeSlider: React.FC = () => {
         <input
           type="range"
           className="price-range-slider__slider__input absolute w-40"
-          min={PRICE_MIN}
+          min={PRICE_RANGE_MIN}
           step={1}
-          max={PRICE_MAX}
+          max={PRICE_RANGE_MAX}
           value={minPrice}
           onChange={onChangeMinRange}
+          disabled={!enabled}
         />
         <input
           type="range"
           className="price-range-slider__slider__input absolute w-40"
-          min={PRICE_MIN}
+          min={PRICE_RANGE_MIN}
           step={1}
-          max={PRICE_MAX}
+          max={PRICE_RANGE_MAX}
           value={maxPrice}
           onChange={onChangeMaxRange}
+          disabled={!enabled}
         />
       </div>
       <input
-        type="number"
+        type="text"
         className="price-range-slider__input"
-        value={maxPrice}
+        value={maxPrice === PRICE_RANGE_MAX ? `$${maxPrice}+` : `$${maxPrice}`}
+        maxLength={3}
+        disabled={!enabled}
       />
     </div>
   );

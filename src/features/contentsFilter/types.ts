@@ -7,4 +7,5 @@ export enum PricingOptions {
 export type ContentFilter = {
   pricingOptions: PricingOptions[];
   keyword: string;
+  priceRange: [number, number];
 };

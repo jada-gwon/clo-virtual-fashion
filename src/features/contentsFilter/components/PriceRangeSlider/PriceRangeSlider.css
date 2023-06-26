@@ -4,7 +4,7 @@
     border-radius: 4px;
     background-color: theme(colors.zinc.700);
     text-align: center;
-    width: 40px;
+    width: 60px;
     font-size: 10px;
     &:focus {
       border-color: theme(colors.teal.300);

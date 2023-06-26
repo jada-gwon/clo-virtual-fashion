@@ -1,13 +1,9 @@
+import { DEFAULT_FILTER_STATE } from '../constants';
 import { ContentFilter } from '../types';
 
 function getInitialContentsFilterState(): ContentFilter {
   const { contentsFilter } = window.history.state || {};
-  return (
-    contentsFilter ?? {
-      pricingOptions: [],
-      keyword: '',
-    }
-  );
+  return { ...DEFAULT_FILTER_STATE, ...contentsFilter };
 }
 
 export default getInitialContentsFilterState;

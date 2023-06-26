@@ -16,7 +16,17 @@ export default {
         sm: 0,
       },
     },
-    extend: {},
+    extend: {
+      keyframes: {
+        skeleton: {
+          '0%, 100%': { opacity: 1 },
+          '50%': { opacity: 0.7 },
+        },
+      },
+      animation: {
+        skeleton: 'skeleton 2s ease-in-out infinite',
+      },
+    },
   },
   plugins: [],
 };

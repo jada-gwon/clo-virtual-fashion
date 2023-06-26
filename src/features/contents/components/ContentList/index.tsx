@@ -6,10 +6,13 @@ import { selectFilterState } from '@/features/contentsFilter/selector';
 import useContentsList from '../../queries/useContentsList';
 import ContentItem from '../ContentItem';
 
+import Skeleton from './Skeleton';
+
 const ContentList: React.FC = () => {
   const filterState = useSelector(selectFilterState);
   const {
     data: contents,
+    isLoading,
     isFetchingNextPage,
     hasNextPage,
     fetchNextPage,
@@ -30,6 +33,14 @@ const ContentList: React.FC = () => {
     return () => observer.unobserve(target);
   }, [target, isFetchingNextPage, hasNextPage, fetchNextPage]);
 
+  if (isLoading) {
+    return (
+      <ul className="grid grid-cols-1 md:grid-cols-2 md:gap-x-2.5 lg:grid-cols-3 lg:gap-x-6 xl:grid-cols-4 xl:gap-x-10">
+        <Skeleton />
+      </ul>
+    );
+  }
+
   return (
     <>
       <ul className="grid grid-cols-1 md:grid-cols-2 md:gap-x-2.5 lg:grid-cols-3 lg:gap-x-6 xl:grid-cols-4 xl:gap-x-10">
@@ -40,6 +51,7 @@ const ContentList: React.FC = () => {
             </li>
           ))
         )}
+        {isFetchingNextPage && <Skeleton />}
       </ul>
       <div ref={setTarget} />
     </>
